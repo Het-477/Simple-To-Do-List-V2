@@ -9,7 +9,7 @@
     padding: 0;
 }
 
-html { 
+html {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 16pt;
     color: var(--text-color);
@@ -32,3 +32,12 @@ body {
     align-items: center;
 }
 
+h1 {
+    margin-top: 100px;
+    font-weight: bold;
+    font-size: 3rem;
+    /* `3rem` means 3 times the size of the original font size */
+    text-transform: uppercase;
+    text-align: center;
+    color: var(--accent-color);
+}
