@@ -36,10 +36,20 @@ h1 {
     margin-top: 100px;
     margin-bottom: 24px;
     font-weight: bold;
+    /* `3rem` means 3 times the size of the original font size: */
     font-size: 3rem;
-    /* `3rem` means 3 times the size of the original font size */
     text-transform: uppercase;
     text-align: center;
     color: var(--accent-color);
 }
+
+.wrapper {
+    width: 700px;
+    /* for smaller devices:  */
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
 
