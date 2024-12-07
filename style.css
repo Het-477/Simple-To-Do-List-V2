@@ -52,4 +52,18 @@ h1 {
     gap: 12px;
 }
 
+#todo-input {
+    padding: 12px 20px;
+    width: 100%;
+    background: none;
+    border: 2px solid var(--secondary-color);
+    border-radius: 1000px;
+    color: var(--text-color);
+    font: inherit;
+    caret-color: var(--accent-color);
+    /* caret-shape: underscore; */
+}
 
+#todo-input:focus {
+    outline: none;
+}
