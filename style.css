@@ -126,3 +126,44 @@ button {
 .delete-button:hover svg {
     fill: rgb(232, 3, 3);
 }
+
+/* custom checkbox styling:  */
+.custom-checkbox {
+    border: 2px solid var(--accent-color);
+    border-radius: 50%;
+    /* min height and width to ensure the the circle is not squished */
+    min-height: 20px;
+    min-width: 20px;
+    display: flex;
+    /* flex-shrink: 0; to ensure the circle is not squeezed by another elements */
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.custom-checkbox,
+.todo .todo-text {
+    transition: 340ms ease-in;
+}
+
+/* to change the color of checkbox circle when its checked */
+input[type="checkbox"]:checked~.custom-checkbox {
+    background-color: var(--accent-color);
+}
+
+/* to change the color of the 'tick' svg icon when the checkbox is checked */
+input[type="checkbox"]:checked~.custom-checkbox svg {
+    fill: var(--primary-color);
+}
+
+/* to strike through the todo text when the checkbox is checked */
+input[type="checkbox"]:checked~.todo-text {
+    text-decoration: line-through;
+    opacity: 20%;
+}
+
+/* to hide the actual checkbox */
+input[type="checkbox"] {
+    display: none;
+}
