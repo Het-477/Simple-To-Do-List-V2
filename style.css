@@ -116,6 +116,7 @@ form {
 
 button {
     cursor: pointer;
+    border: none;
 }
 
 /* delete button transition animation */
