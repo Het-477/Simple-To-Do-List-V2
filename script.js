@@ -2,7 +2,10 @@ const todoForm = document.querySelector("form")
 const todoInput = document.getElementById("todo-input")
 const todoListUL = document.getElementById("todo-list")
 
-let allTodosArray = [];
+let allTodosArray = getTodosFromLocalStorage();
+updateTodoList();
+console.log(allTodosArray);
+
 
 todoForm.addEventListener("submit", (event) => {
     event.preventDefault(); //to prevent the page from automatically reloading after every submit
@@ -42,6 +45,11 @@ function createTodoItem(todo, todoIndex) {
                     </svg>
                 </button>
     `;
+
+    const deleteButton = document.querySelector(".delete-button");
+    deleteButton.addEventListener("click", () => {
+
+    })
     return todoListItem;
 }
 
@@ -54,10 +62,12 @@ function updateTodoList() {
     })
 }
 
-
-
 function saveTodosToLocalStorage() {
     const todoJson = JSON.stringify(allTodosArray);
     localStorage.setItem("todos", todoJson);
 }
 
+function getTodosFromLocalStorage() {
+    const todos = localStorage.getItem("todos") || "[]"; // if local storage is empty then create an empty array
+    return JSON.parse(todos); // converts stored JSONs into js arrays, and returns them
+}
