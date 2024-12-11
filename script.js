@@ -4,7 +4,7 @@ const todoListUL = document.getElementById("todo-list")
 
 let allTodosArray = getTodosFromLocalStorage();
 updateTodoList();
-console.log(allTodosArray);
+// console.log(allTodosArray);
 
 
 todoForm.addEventListener("submit", (event) => {
@@ -15,7 +15,11 @@ todoForm.addEventListener("submit", (event) => {
 function addTodo() {
     const todoText = todoInput.value.trim();
     if (todoText.length > 0) {
-        allTodosArray.push(todoText);
+        const todoObject = {
+            text: todoText,
+            completed: false
+        }
+        allTodosArray.push(todoObject);
         updateTodoList();
         saveTodosToLocalStorage();
         todoInput.value = "";
@@ -25,6 +29,7 @@ function addTodo() {
 function createTodoItem(todo, todoIndex) {
     const todoId = "todo-" + todoIndex;
     const todoListItem = document.createElement("li")
+    const todoText = todo.text;
     todoListItem.className = "todo"; // to set the class name of the li inside out todo list
     todoListItem.innerHTML = `
              <input type="checkbox" id="${todoId}">
@@ -35,7 +40,7 @@ function createTodoItem(todo, todoIndex) {
                     </svg>
                 </label>
                 <label for="${todoId}" class="todo-text">
-                    ${todo}
+                    ${todoText}
                 </label>
                 <button class="delete-button">
                     <svg fill="var(--secondary-color)" xmlns="http://www.w3.org/2000/svg" height="24px"
@@ -46,10 +51,12 @@ function createTodoItem(todo, todoIndex) {
                 </button>
     `;
 
-    const deleteButton = document.querySelector(".delete-button");
+    const deleteButton = todoListItem.querySelector(".delete-button"); // selects the delete-button class from li(todo) 
     deleteButton.addEventListener("click", () => {
-
+        deleteTodoItem(todoIndex);
     })
+
+   
     return todoListItem;
 }
 
@@ -70,4 +77,10 @@ function saveTodosToLocalStorage() {
 function getTodosFromLocalStorage() {
     const todos = localStorage.getItem("todos") || "[]"; // if local storage is empty then create an empty array
     return JSON.parse(todos); // converts stored JSONs into js arrays, and returns them
+}
+
+function deleteTodoItem(todoIndex) {
+    allTodosArray = allTodosArray.filter((_, i) => i !== todoIndex)
+    saveTodosToLocalStorage();
+    updateTodoList();
 }
