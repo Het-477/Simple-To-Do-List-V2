@@ -14,6 +14,7 @@ function addTodo() {
     if (todoText.length > 0) {
         allTodosArray.push(todoText);
         updateTodoList();
+        saveTodosToLocalStorage();
         todoInput.value = "";
     }
 }
@@ -54,4 +55,9 @@ function updateTodoList() {
 }
 
 
+
+function saveTodosToLocalStorage() {
+    const todoJson = JSON.stringify(allTodosArray);
+    localStorage.setItem("todos", todoJson);
+}
 
