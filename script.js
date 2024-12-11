@@ -56,7 +56,13 @@ function createTodoItem(todo, todoIndex) {
         deleteTodoItem(todoIndex);
     })
 
-   
+    const checkbox = todoListItem.querySelector("input");
+    checkbox.addEventListener("change", () => {
+        allTodosArray[todoIndex].completed = checkbox.checked;
+        saveTodosToLocalStorage();
+    })
+    checkbox.checked = todo.completed;
+
     return todoListItem;
 }
 
